@@ -22,5 +22,6 @@ function createWindow() {
         resizable: false,
         icon: "./assets/icon.ico"
     });
+    // win.setMenu(null);
     win.loadFile("index.html").then(() => {});
 }

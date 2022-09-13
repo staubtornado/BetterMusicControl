@@ -1,7 +1,42 @@
+:root {
+    --background-white: white;
+    --background-dark: #36393f;
+    --theme-color: #4cc2ff;
+    --container-white: #ebedef;
+    --container-dark: #2f3136;
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background: var(--background-white);
+        color: black;
+    }
+    .grid-ui-item {
+        background: var(--container-white);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: var(--background-dark);
+        color: white;
+    }
+    .grid-ui-item {
+        background: var(--container-dark);
+    }
+}
+
 body {
-    font-family: monospace;
-    font-size: 32px;
-    background-color: black;
-    color: greenyellow;
-    text-align: center;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-size: 75%;
+}
+
+.grid-ui {
+    display: grid;
+    grid-template-columns: repeat(15, auto);
+}
+
+.grid-ui-item {
+    border-radius: 25px;
+    margin: 5% 150px 5% 150px;
 }
