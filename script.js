@@ -38,6 +38,10 @@ function createWindow() {
     });
     // win.setMenu(null);
     win.loadFile("./ui/index.html").then(() => {});
+    win.webContents.setWindowOpenHandler(({ url }) => {
+        require('electron').shell.openExternal(url).then(() => {});
+        return {action: 'deny'};
+    });
     con = new connection(win);
 
     globalShortcut.register('MediaPlayPause', () => {

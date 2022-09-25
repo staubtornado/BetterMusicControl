@@ -11,6 +11,7 @@ function submitConnection() {
 
 function endConnected() {
     window.electronAPI.requestToUpdateConnection("DISCONNECT", []);
+    updateSong(undefined, undefined, undefined, undefined);
 }
 
 
@@ -39,8 +40,17 @@ function updateConnectionState(state) {
 updateConnectionState("disconnected");
 
 function updateSong(title, uploader, url, thumbnail) {
-    song_view.innerHTML = `<span>${title} by ${uploader}</span>
-                <a href="${url}">Video</a>
-                <img src="${thumbnail}" alt="thumbnail" style="width: 80px; height: 40px">
-               `;
+    if (typeof title === "undefined") {
+        song_view.innerHTML = "";
+        return
+    }
+
+    song_view.innerHTML =
+        `<div id="video_information">
+                <span>${title} by ${uploader}</span><br/>
+                <a href="${url}" target="_blank">Video</a>
+        </div>
+            <img src="${thumbnail}" alt="thumbnail"
+                 style="width: 80px; height: 40px">
+        `;
 }

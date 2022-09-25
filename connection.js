@@ -1,23 +1,39 @@
 const net = require("net");
 const {shell} = require("electron");
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 class Connection {
     client = new net.Socket();
     closed = true;
     win;
 
+    uID;
+    sessionID;
+
     constructor(win) {
-        this.client.on("data", (data) => {
+        this.client.on("data", async (data) => {
             data = data.toString().replaceAll("'", '"');
             try {
                 data = JSON.parse('' + data);
                 const code = `updateSong("${data["title"]}", "${data["uploader"]}", "${data["url"]}", "${data["thumbnail"]}");`
-                win.webContents.executeJavaScript(code).then(() => {});
+                win.webContents.executeJavaScript(code).then(() => {
+                });
+
+                await delay(10000);
+                if (!this.closed) {
+                    this.client.write(JSON.stringify({
+                        "uID": this.uID,
+                        "sessionID": this.sessionID,
+                        "message": "FETCH"
+                    }));
+                }
             } catch (e) {
-                win.webContents.executeJavaScript(`alert(${data.valueOf()});`).then(() => {});
+                win.webContents.executeJavaScript(`alert(${data.valueOf()});`).then(() => {
+                });
                 this.client.destroy();
                 console.log("Connection ended...");
-                win.webContents.executeJavaScript("updateConnectionState(\"disconnected\");").then(() => {});
+                win.webContents.executeJavaScript("updateConnectionState(\"disconnected\");").then(() => {
+                });
                 this.closed = true;
             }
         });
@@ -39,6 +55,8 @@ class Connection {
             }));
             this.win.webContents.executeJavaScript("updateConnectionState(\"connected\");").then(() => {});
             this.closed = false;
+            this.uID = uID;
+            this.sessionID = sessionID;
         });
     }
 
