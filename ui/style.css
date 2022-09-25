@@ -1,0 +1,108 @@
+:root {
+    --background-white: white;
+    --background-dark: #36393f;
+    --input-background-white: #e3e5e8;
+    --input-background-dark: #202225;
+    --theme-color: #4cc2ff;
+    --container-white: #ebedef;
+    --container-dark: #2f3136;
+
+    --radius: 8px;
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background: var(--background-white);
+        color: black;
+    }
+    .grid-ui-item {
+        background: var(--container-white);
+    }
+    input {
+        background: var(--input-background-white);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: var(--background-dark);
+        color: white;
+    }
+    .grid-ui-item {
+        background: var(--container-dark);
+
+    }
+    input {
+        background: var(--input-background-dark);
+        color: white;
+    }
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-size: 75%;
+}
+
+a {
+    text-decoration: none !important;
+    color: var(--theme-color);
+}
+
+.grid-ui {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.grid-ui-item {
+    border-radius: var(--radius);
+    margin: 5%;
+}
+
+.grid-ui-item:nth-child(3) {
+    grid-column: span 2;
+}
+
+.status {
+    font-size: x-large;
+    margin: 0 0 6% 2%;
+}
+.input {
+    width: 90%;
+    display: block;
+    /*background-color: #eee;*/
+    margin: 0 auto 5% auto;
+}
+
+input {
+    border: var(--theme-color) 1px solid;
+    border-radius: var(--radius);
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    width: 63%;
+    margin: 0 0 0 7%;
+}
+#con {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+button {
+    border: transparent 1px solid;
+    border-radius: var(--radius);
+    background: var(--theme-color);
+    cursor: pointer;
+}
+
+img {
+    margin: 2% 0 0 0;
+    vertical-align: text-bottom;
+    display:inline-block;
+    border-radius: var(--radius);
+}
+
+#video_information {
+    display: inline-block;
+    margin: 3% 15% 0 4%;
+}
