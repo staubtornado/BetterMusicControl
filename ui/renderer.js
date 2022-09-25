@@ -40,7 +40,7 @@ function updateConnectionState(state) {
 updateConnectionState("disconnected");
 
 function updateSong(title, uploader, url, thumbnail) {
-    if (typeof title === "undefined") {
+    if (typeof title === "undefined" || title === "") {
         song_view.innerHTML = "";
         return
     }

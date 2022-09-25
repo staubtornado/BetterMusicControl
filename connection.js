@@ -19,7 +19,7 @@ class Connection {
                 win.webContents.executeJavaScript(code).then(() => {
                 });
 
-                await delay(10000);
+                await delay(30000);
                 if (!this.closed) {
                     this.client.write(JSON.stringify({
                         "uID": this.uID,

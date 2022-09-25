@@ -36,7 +36,7 @@ function createWindow() {
             preload: path.join(__dirname, 'preload.js')
         }
     });
-    // win.setMenu(null);
+    win.setMenu(null);
     win.loadFile("./ui/index.html").then(() => {});
     win.webContents.setWindowOpenHandler(({ url }) => {
         require('electron').shell.openExternal(url).then(() => {});
