@@ -16,8 +16,7 @@ class Connection {
             try {
                 data = JSON.parse('' + data);
                 const code = `updateSong("${data["title"]}", "${data["uploader"]}", "${data["url"]}", "${data["thumbnail"]}");`
-                win.webContents.executeJavaScript(code).then(() => {
-                });
+                win.webContents.executeJavaScript(code).then(() => {});
 
                 await delay(30000);
                 if (!this.closed) {
@@ -28,7 +27,7 @@ class Connection {
                     }));
                 }
             } catch (e) {
-                win.webContents.executeJavaScript(`alert(${data.valueOf()});`).then(() => {
+                win.webContents.executeJavaScript(`alert("${data}");`).then(() => {
                 });
                 this.client.destroy();
                 console.log("Connection ended...");

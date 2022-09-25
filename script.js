@@ -1,4 +1,4 @@
-const {app, BrowserWindow, globalShortcut, ipcMain} = require("electron");
+const {app, BrowserWindow, globalShortcut, ipcMain, shell} = require("electron");
 const {connection} = require("./connection");
 const path = require('path');
 
@@ -46,6 +46,7 @@ function createWindow() {
 
     globalShortcut.register('MediaPlayPause', () => {
         if (con.closed) {
+            shell.beep();
             return;
         }
 

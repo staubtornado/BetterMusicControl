@@ -2,7 +2,14 @@ const connection_control = document.getElementById("controls");
 const song_view = document.getElementById("player");
 
 function submitConnection() {
-    const input = document.getElementById("address").value;
+    let input = document.getElementById("address");
+    if (!/^\d{1,3}(.\d{1,3}){3}:\d{1,5}\?[\dA-F]{8}=[\dA-F]{2}$/.test(input.value)) {
+        input.style.borderColor = "red";
+        return;
+    }
+    input.style.borderColor = "var(--theme-color)";
+    input = input.value;
+
     const address = input.split(/:/)[0];
     const port = input.split(/:/)[1].split(/\?/)[0];
     const sessionID = input.split(/:/)[1].split(/\?/)[1];
@@ -19,8 +26,7 @@ const STATUS_UI = {
     "disconnected":
         '<div class="status"><span>Status: </span><span style="color: red">Disconnected</span>\</div>' +
         '<div class="input"><label for="address"></label>' +
-        '<input type="text" id="address" placeholder="Session ID" required ' +
-        'pattern="\\d{1,3}(.\\d{1,3}){3}:\\d{1,5}\\?[\\dA-F]{8}=[\\dA-F]{2}" title="Enter valid Session ID."/>' +
+        '<input type="text" id="address" placeholder="Session ID"/>' +
     '   <button id="con" onclick="submitConnection()">Connect</button></div>',
     "connecting":
         '<span>Connecting...<span\>',
