@@ -1,9 +1,12 @@
 const {app, BrowserWindow, globalShortcut, ipcMain, shell} = require("electron");
 const {connection} = require("./connection");
 const path = require('path');
+const dotenv = require('dotenv');
 
 let sessionID;
-const uID = "857682898756829234"; // Needs to be String due to JavaScript Max-Safe-Integer
+dotenv.config();
+console.log(`Your port is ${process.env.uID}`);
+const uID = `${process.env.uID}`; // Needs to be String due to JavaScript Max-Safe-Integer
 let con;
 
 function processUpdateConnection(event, args) {

@@ -7,7 +7,6 @@ function submitConnection() {
         input.style.borderColor = "red";
         return;
     }
-    input.style.borderColor = "var(--theme-color)";
     input = input.value;
 
     const address = input.split(/:/)[0];
