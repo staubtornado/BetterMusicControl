@@ -5,6 +5,7 @@ them.
 
 # How to install:
 1. [Download](https://github.com/staubtornado/BetterMusicControl/releases) and install the newest release.
+**Ignore the blue alert that pops-up. The application is safe, just does not have a certificate.**
 2. Go to your install directory (default: `C:\Users\%USERNAME%\AppData\Local\Programs\BetterMusicControl`) and create a `.env` file in it.
 3. Open your Discord Client.
 4. Go to `Settings` -> `Advanced` and enable Developer mode.
