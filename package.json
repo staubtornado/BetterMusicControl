@@ -1,13 +1,34 @@
 {
   "name": "better-music-control",
   "main": "script.js",
+  "description": "Allows TornadoBot user to toggle music with a single hotkey.",
+  "version": "1.0.0",
+  "author": {
+    "name": "JBKDevelopments"
+  },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder"
   },
   "devDependencies": {
-    "electron": "^20.1.3"
+    "electron": "^20.2.0",
+    "electron-builder": "^23.3.3",
+    "electron-packager": "^16.0.0"
   },
   "dependencies": {
     "dotenv": "^16.0.2"
+  },
+  "build": {
+    "appId": "com.bettermusiccontrol.app",
+    "productName": "TornadoBot Music Control",
+    "target": "NSIS",
+    "directories": {
+      "output": "build"
+    },
+    "icon": "./assets/icon.ico",
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false
+    }
   }
 }

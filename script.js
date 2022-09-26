@@ -5,7 +5,6 @@ const dotenv = require('dotenv');
 
 let sessionID;
 dotenv.config();
-console.log(`Your port is ${process.env.uID}`);
 const uID = `${process.env.uID}`; // Needs to be String due to JavaScript Max-Safe-Integer
 let con;
 
@@ -34,7 +33,7 @@ function createWindow() {
         width: 800,
         height: 800,
         resizable: false,
-        icon: "./assets/icon.ico",
+        icon: path.join(__dirname, 'assets/icon.ico'),
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         }
