@@ -26,7 +26,7 @@ function processUpdateConnection(event, args) {
 app.whenReady().then(() => {
     ipcMain.on('connectionUpdateRequest', processUpdateConnection);
     createWindow();
-})
+});
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -53,11 +53,23 @@ function createWindow() {
         }
 
         console.log("Sending toggle request to server.");
-
         con.send(JSON.stringify({
             "uID": uID,
             "sessionID": sessionID,
             "message": "TOGGLE"
+        }));
+    });
+    globalShortcut.register('MediaNextTrack', () => {
+        if (con.closed) {
+            shell.beep();
+            return;
+        }
+
+        console.log("Sending skip request to server.");
+        con.send(JSON.stringify({
+            "uID": uID,
+            "sessionID": sessionID,
+            "message": "SKIP"
         }));
     });
 }
