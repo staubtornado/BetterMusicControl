@@ -4,13 +4,11 @@ users to control music over hotkeys. This allows music streaming while playing y
 them.
 
 # How to install:
-1. Create an empty folder and remember the location.
-2. [Download](https://github.com/staubtornado/BetterMusicControl/releases) the newest release and put the `.exe` file 
-in it.
-3. Create a `.env` file in the same directory.
-4. Open your Discord Client.
-5. Go to `Settings` -> `Advanced` and enable Developer mode.
-6. Leave the settings and right-click on your username.
-7. Click copy ID.
-8. Paste `UID=ENTER_YOUR_ID_HERE` in the `.env` file and save it.
-9. Start the `.exe` file.
+1. [Download](https://github.com/staubtornado/BetterMusicControl/releases) and install the newest release.
+2. Go to your install directory (default: `C:\Users\%USERNAME%\AppData\Local\Programs\BetterMusicControl`) and create a `.env` file in it.
+3. Open your Discord Client.
+4. Go to `Settings` -> `Advanced` and enable Developer mode.
+5. Leave the settings and right-click on your username.
+6. Click copy ID.
+7. Paste `UID=ENTER_YOUR_ID_HERE` in the `.env` file and save it.
+8. Run the programm.
