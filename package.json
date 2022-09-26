@@ -1,8 +1,8 @@
 {
   "name": "better-music-control",
   "main": "script.js",
-  "description": "Allows TornadoBot user to toggle music with a single hotkey.",
-  "version": "1.0.0",
+  "description": "Allows TornadoBot user to control music with media-hotkeys.",
+  "version": "1.0.1",
   "author": {
     "name": "JBKDevelopments"
   },
