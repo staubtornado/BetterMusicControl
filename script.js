@@ -1,4 +1,5 @@
-const {app, BrowserWindow, globalShortcut, ipcMain, shell} = require("electron");
+const {app, globalShortcut, ipcMain, shell, nativeTheme } = require("electron");
+const {BrowserWindow, setVibrancy} = require("electron-acrylic-window")
 const {connection} = require("./connection");
 const path = require('path');
 const dotenv = require('dotenv');
@@ -7,6 +8,7 @@ let sessionID;
 dotenv.config();
 const uID = `${process.env.uID}`; // Needs to be String due to JavaScript Max-Safe-Integer
 let con;
+let win;
 
 function processUpdateConnection(event, args) {
     if (args[0] === "CONNECT") {
@@ -21,29 +23,52 @@ function processUpdateConnection(event, args) {
         con.disconnect();
     }
 }
-
+function minimize() {
+    win.minimize();
+}
+function close() {
+    win.close();
+}
 
 app.whenReady().then(() => {
     ipcMain.on('connectionUpdateRequest', processUpdateConnection);
+    ipcMain.on('minimize', minimize);
+    ipcMain.on('close', close);
     createWindow();
 });
 
 function createWindow() {
-    const win = new BrowserWindow({
+    win = new BrowserWindow({
         width: 800,
-        height: 800,
+        height: 650,
         resizable: false,
+        frame: false,
         icon: path.join(__dirname, 'assets/icon.ico'),
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
-        }
+            preload: path.join(__dirname, 'preload.js'),
+            enableRemoteModule: true
+        },
     });
+
+    const vibrancy = {
+        theme: "#FFFFFF00",
+        effect: 'acrylic',
+        useCustomWindowRefreshMethod: true,
+        disableOnBlur: true,
+        debug: false,
+    }
+    if (nativeTheme.shouldUseDarkColors) {
+        vibrancy["theme"] = "#20202000";
+    }
+    setVibrancy(win, vibrancy);
+
     win.setMenu(null);
     win.loadFile("./ui/index.html").then(() => {});
-    win.webContents.setWindowOpenHandler(({ url }) => {
-        require('electron').shell.openExternal(url).then(() => {});
-        return {action: 'deny'};
+    win.webContents.setWindowOpenHandler((details) => {
+        shell.openExternal(details.url).then(() => {});
+        return { action: 'deny' };
     });
+    win.webContents.openDevTools({ mode: 'detach' })
     con = new connection(win);
 
     globalShortcut.register('MediaPlayPause', () => {

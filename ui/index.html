@@ -3,8 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>TornadoBot Music Control</title>
+    <link rel="stylesheet" href="./titleBar.css"/>
     <link rel="stylesheet" href="./style.css"/>
 </head>
+
+<div class="bar">
+    <div id="drag-region" class="bar--drag-region">
+        <div class="bar--title">
+            <img src="../assets/icon.ico" alt="" class="bar--title-icon">
+            <span class="bar--title-content">
+				TornadoBot Music Control
+			</span>
+        </div>
+    </div>
+    <div class="bar--controls">
+        <div class="bar--control bar--control-minimize" id="minimize-control">
+            <span>&#xE921;</span>
+        </div>
+        <div class="bar--control bar--control-close" id="close-control">
+            <span>&#xE8BB;</span>
+        </div>
+    </div>
+    <script src="controlBar.js"></script>
+</div>
+
 <body>
     <div class="grid-ui">
         <div class="grid-ui-item" id="controls"></div>

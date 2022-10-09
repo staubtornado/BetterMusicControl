@@ -55,7 +55,6 @@ function updateSong(title, uploader, url, thumbnail) {
                 <span>${title} by ${uploader}</span><br/>
                 <a href="${url}" target="_blank">Video</a>
         </div>
-            <img src="${thumbnail}" alt="thumbnail"
-                 style="width: 80px; height: 40px">
+            <img src="${thumbnail}" alt="thumbnail" id="thumbnail" style="width: 80px; height: 40px">
         `;
 }

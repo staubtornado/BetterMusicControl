@@ -1,18 +1,17 @@
 :root {
-    --background-white: white;
-    --background-dark: #36393f;
+    --background-white: #FFFFFF65;  /* Unused */
+    --background-dark: #20202065;   /* Unused */
     --input-background-white: #e3e5e8;
     --input-background-dark: #202225;
     --theme-color: #4cc2ff;
-    --container-white: #ebedef;
-    --container-dark: #2f3136;
+    --container-white: #ebedef7F;
+    --container-dark: #2f31367F;
 
     --radius: 8px;
 }
 
 @media (prefers-color-scheme: light) {
     body {
-        background: var(--background-white);
         color: black;
     }
     .grid-ui-item {
@@ -25,7 +24,6 @@
 
 @media (prefers-color-scheme: dark) {
     body {
-        background: var(--background-dark);
         color: white;
     }
     .grid-ui-item {
@@ -41,6 +39,7 @@
 body {
     font-family: "Segoe UI", Tahoma, sans-serif;
     font-size: 75%;
+    margin: 0
 }
 
 a {
@@ -96,7 +95,7 @@ button {
     cursor: pointer;
 }
 
-img {
+#thumbnail {
     margin: 2% 0 0 0;
     vertical-align: text-bottom;
     display:inline-block;
