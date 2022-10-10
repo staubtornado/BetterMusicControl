@@ -3,6 +3,9 @@ const {BrowserWindow, setVibrancy} = require("electron-acrylic-window")
 const {connection} = require("./connection");
 const path = require('path');
 const dotenv = require('dotenv');
+const os = require("os");
+
+const debug = false;
 
 let sessionID;
 dotenv.config();
@@ -37,6 +40,14 @@ app.whenReady().then(() => {
     createWindow();
 });
 
+function isVibrancySupported() {
+    // Windows 10 or greater
+    return (
+        process.platform === 'win32' &&
+        parseInt(os.release().split('.')[0]) >= 10
+    )
+}
+
 function createWindow() {
     win = new BrowserWindow({
         width: 800,
@@ -50,14 +61,19 @@ function createWindow() {
         },
     });
 
-    const vibrancy = {
-        theme: "#FFFFFF00",
-        effect: 'acrylic',
-        useCustomWindowRefreshMethod: true,
-        disableOnBlur: true,
-        debug: false,
+    let vibrancy;
+    if (isVibrancySupported()) {
+        vibrancy = {
+            theme: "#FFFFFF00",
+            effect: 'acrylic',
+            useCustomWindowRefreshMethod: true,
+            disableOnBlur: true,
+            debug: debug,
+        };
+    } else {
+        vibrancy = "dark";
     }
-    if (nativeTheme.shouldUseDarkColors) {
+    if (isVibrancySupported() && nativeTheme.shouldUseDarkColors) {
         vibrancy["theme"] = "#20202000";
     }
     setVibrancy(win, vibrancy);
@@ -68,7 +84,10 @@ function createWindow() {
         shell.openExternal(details.url).then(() => {});
         return { action: 'deny' };
     });
-    win.webContents.openDevTools({ mode: 'detach' })
+
+    if (debug) {
+        win.webContents.openDevTools({mode: 'detach'});
+    }
     con = new connection(win);
 
     globalShortcut.register('MediaPlayPause', () => {
